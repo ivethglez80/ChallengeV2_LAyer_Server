@@ -18,7 +18,7 @@ app.use(cors());
 
 app.use(express.json()); 
 
-app.use("/email", emailRoute);
+app.use("/", emailRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

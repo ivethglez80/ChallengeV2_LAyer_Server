@@ -14,37 +14,30 @@ let transporter = nodemailer.createTransport({
 });
 
 const sendEmail = expressAsyncHandler(async (req, res) => {
-  const { nombre, apellido, email, consulta } = req.body;
-  console.log(nombre, apellido, email, consulta);
+  const {  email } = req.body;
+  
 
 
-  // PARA ENVIAR DESDE EL WEBSITE A OTROS
-  // var mailOptions = {
-  //   from: process.env._MAIL,
-  //   to: email,
-  //   consulta: consulta,
-  //   nombre: nombre,
-  //   apellido: apellido
-  // };
-
-  // PARA QUE LOS VISITORS ENVIEN CONSULTAS
+  
   var mailOptions = {
-    from: email, // Utiliza la dirección de correo electrónico del visitante como remitente
-    to: process.env._MAIL, // Utiliza la dirección de correo electrónico del propietario del sitio como destinatario
-    subject: 'Consulta del sitio web', // Asunto del correo
+    from: "iveth.dev@gmail.com",
+    to: "admin@grupocober.online",
+    subject: "Notificacion de pagina web",
     text: `
-      Nombre: ${nombre}
-      Apellido: ${apellido}
-      Email: ${email}
-      Consulta: ${consulta}
-    `
+       Felicitaciones, Tienes un nuevo suscriptor!
+       Email: ${email}       
+     `
   };
+
+  
 
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
+      res.status(500).send('Error al enviar el correo electrónico');
     } else {
       console.log("Email sent successfully!");
+      res.status(200).send('Correo electrónico enviado con éxito');
     }
   });
 });
