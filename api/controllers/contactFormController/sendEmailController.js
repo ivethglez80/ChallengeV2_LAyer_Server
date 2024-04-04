@@ -21,7 +21,7 @@ const sendEmail = expressAsyncHandler(async (req, res) => {
   
   var mailOptions = {
     from: "iveth.dev@gmail.com",
-    to: "ivethglez80@gmail.com",
+    to: "admin@grupocober.online",
     subject: "Notificacion de pagina web",
     text: `
        Felicitaciones, Tienes un nuevo suscriptor!
